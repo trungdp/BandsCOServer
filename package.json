@@ -1,0 +1,23 @@
+{
+  "name": "bandscoserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungdp/BandsCOServer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trungdp/BandsCOServer/issues"
+  },
+  "homepage": "https://github.com/trungdp/BandsCOServer#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1"
+  }
+}
