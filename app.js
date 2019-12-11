@@ -14,4 +14,6 @@ app.get("/", function(req, res) {
     res.render("index");
 });
 
-server.listen(process.env.PORT || 3300);
+server.listen(process.env.PORT || 3300, () => {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
