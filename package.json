@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/trungdp/BandsCOServer#readme",
     "dependencies": {
+        "dotenv": "^8.2.0",
         "ejs": "^3.0.1",
         "express": "^4.17.1",
         "heroku-cli": "^7.0.9",
