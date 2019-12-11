@@ -27,9 +27,9 @@ router.post('/', function(req, res) {
     res.json({ message: 'Đăng nhập thất bại' });
 })
 
-router.get('/:id', function(req, res) {
+router.get('/:username', function(req, res) {
     accounts.forEach(element => {
-        if (element.username == req.body.username) {
+        if (element.username == req.params.username) {
             res.json(element)
         };
         return;
