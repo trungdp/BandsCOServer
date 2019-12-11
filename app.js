@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 app.get("/", function(req, res) {
-    res.render("index");
+    res.render("Index");
 });
 
 app.listen(process.env.PORT || 3300, () => {
