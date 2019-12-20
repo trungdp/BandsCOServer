@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-// Route(app);
+Route(app);
 
 
 app.listen(process.env.PORT || 3300, () => {
