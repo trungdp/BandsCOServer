@@ -4,7 +4,7 @@ var app = express();
 var server = require('http').createServer(app);
 var fs = require('fs');
 var bodyParser = require('body-parser');
-const Route = require('./routes/index');
+const Route = require('./routes/Index');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
