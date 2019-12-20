@@ -19,10 +19,10 @@ module.exports = {
     },
     getPosts(req, res) {
         return Post.findAll({ limit: 10 })
-            .then(posts => {
+            .then(async posts => {
                 var data = [];
-                posts.forEach(post => {
-                    var json = { type: post.PostType, postcontent: "" }
+                await posts.forEach(async post => {
+                    var json = { type: post.type, postcontent: "" }
                     switch (post.type) {
                         case PostType.FIND_BAND:
                             json.postcontent = {
@@ -38,32 +38,34 @@ module.exports = {
                                 createdAt: post.createdAt,
                                 updatedAt: post.updatedAt
                             }
+                            data.push(json);
                             break;
                         case PostType.FIND_MEMBER:
                             var memberIDs = post.members.split(',');
                             var members = [];
-                            memberIDs.forEach(id => {
-                                User.findByPk(id).then(member => {
-                                    members.push(member);
-                                })
-                                if (members.length === memberIDs.length) {
-                                    json.postcontent = {
-                                        id: post.id,
-                                        createdAt: post.createdAt,
-                                        updatedAt: post.updatedAt,
-                                        name: post.name,
-                                        kindofmusic: post.kindofmusic,
-                                        achivement: post.achivement,
-                                        phone: post.phone,
-                                        members: members,
-                                        musicals: post.musicals
+                            await memberIDs.forEach(async id => {
+                                await User.findByPk(id).then(async member => {
+                                    await members.push(member);
+                                    if (members.length === memberIDs.length) {
+                                        json.postcontent = {
+                                            id: post.id,
+                                            createdAt: post.createdAt,
+                                            updatedAt: post.updatedAt,
+                                            name: post.name,
+                                            kindofmusic: post.kindofmusic,
+                                            achivement: post.achivement,
+                                            phone: post.phone,
+                                            members: members,
+                                            musicals: post.musicals
+                                        }
+                                        data.push(json);
                                     }
-                                }
+                                })
                             })
                             break;
                         case PostType.JOIN_BAND:
-                            User.findByPk(post.postedby)
-                                .then(user => {
+                            await User.findByPk(post.postedby)
+                                .then(async user => {
                                     json.postcontent = {
                                         id: post.id,
                                         createdAt: post.createdAt,
@@ -73,12 +75,13 @@ module.exports = {
                                         freetime: post.freetime,
                                         aspiration: post.aspiration
                                     }
-                                })
+                                }).then(async() => { await data.push(json); })
+
                             break;
                         default:
                             break;
                     }
-                    data.push(json);
+                    console.log(json)
                 });
                 res.json(data);
             })
