@@ -15,6 +15,4 @@ module.exports = (app) => {
     app.use('/signup', signup);
 
     app.use('/account', account);
-
-    // app.use('/post', posts)
 }
