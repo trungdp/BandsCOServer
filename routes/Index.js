@@ -1,7 +1,7 @@
 var homes = require('./homeRoute');
 var posts = require('./postRoute');
 var musicalInstruments = require('./musicalInstrumentRoute');
-var login = require('./login');
+var login = require('./loginRoute');
 var signup = require('./signup');
 var account = require('./accountRoute');
 module.exports = (app) => {
