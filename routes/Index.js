@@ -5,7 +5,6 @@ var login = require('./loginRoute');
 var signup = require('./signup');
 var account = require('./accountRoute');
 module.exports = (app) => {
-
     app.use('/home', homes);
 
     app.use('/musicalInstrument', musicalInstruments);
