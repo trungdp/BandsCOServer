@@ -4,6 +4,7 @@ var app = express();
 var server = require('http').createServer(app);
 var fs = require('fs');
 var bodyParser = require('body-parser');
+const Route = require('./routes/Index');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -24,14 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-var homes = require('./routes/homeRoute');
-app.use('/home', homes);
-var musicalInstruments = require('./routes/musicalInstrument');
-app.use('/musicalInstrument', musicalInstruments);
-var login = require('./routes/login');
-app.use('/login', login);
-var signup = require('./routes/signup');
-app.use('/signup', signup);
+// Route(app);
 
 
 app.listen(process.env.PORT || 3300, () => {
