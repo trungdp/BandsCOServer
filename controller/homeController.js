@@ -80,6 +80,7 @@ module.exports = {
                     }
                     data.push(json);
                 });
+                res.json(data);
             })
     }
 }
